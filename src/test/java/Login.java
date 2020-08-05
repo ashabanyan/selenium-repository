@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Login {
@@ -13,10 +15,18 @@ public class Login {
 
     @Before
     public void start() {
-        System.setProperty("webdriver.chrome.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\chromedriver.exe");
+//          System.setProperty("webdriver.chrome.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\chromedriver.exe");
+//          driver = new ChromeDriver();
 
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, 10);
+//          System.setProperty("webdriver.gecko.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\geckodriver.exe");
+//          driver = new FirefoxDriver();
+//
+
+
+            System.setProperty("webdriver.ie.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\IEDriverServer.exe");
+            driver = new InternetExplorerDriver();
+
+            wait = new WebDriverWait(driver, 10);
     }
 
     @Test
