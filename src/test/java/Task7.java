@@ -1,12 +1,12 @@
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class Task7 {
 
@@ -15,16 +15,19 @@ public class Task7 {
 
     @Before
     public void start() {
-        driver = Login.getProperty("chrome");
+        driver = BrowserProperties.getProperty("chrome");
         wait = new WebDriverWait(driver, 10);
-    }
-
-    @Test
-    public void login() {
         driver.get("http://localhost/litecart/admin/");
         driver.findElement(By.xpath("//input[@name=\"username\"]")).sendKeys("admin");
         driver.findElement(By.xpath("//input[@name=\"password\"]")).sendKeys("admin");
         driver.findElement(By.xpath("//button[@name=\"login\"]")).click();
+    }
+
+    @Test
+    public void test1() {
+        driver.findElement(By.xpath(".//span[text()='Appearence']/..")).click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Assert.assertNotNull(driver.findElement(By.id("h1")).getText());
     }
 
     @After
@@ -33,13 +36,4 @@ public class Task7 {
         driver = null;
     }
 
-
-    //      System.setProperty("webdriver.chrome.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\chromedriver.exe");
-//          driver = new ChromeDriver();
-
-//          System.setProperty("webdriver.gecko.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\geckodriver.exe");
-//          driver = new FirefoxDriver();
-//
-//          System.setProperty("webdriver.ie.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\IEDriverServer.exe");
-//          driver = new InternetExplorerDriver();
 }

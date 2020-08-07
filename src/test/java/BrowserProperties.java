@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public final class Login {
+public final class BrowserProperties {
 
     public static WebDriver getProperty(String browser) {
         if (browser=="chrome") {
@@ -28,5 +28,4 @@ public final class Login {
 
         else {return null;}
     }
-
 }
