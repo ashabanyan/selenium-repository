@@ -8,40 +8,25 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Login {
+public final class Login {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
+    public static WebDriver getProperty(String browser) {
+        if (browser=="chrome") {
+            System.setProperty("webdriver.chrome.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\chromedriver.exe");
+            return new ChromeDriver();
+        }
 
-    @Before
-    public void start() {
-//          System.setProperty("webdriver.chrome.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\chromedriver.exe");
-//          driver = new ChromeDriver();
+        else if (browser == "firefox") {
+            System.setProperty("webdriver.gecko.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\geckodriver.exe");
+            return new FirefoxDriver();
+        }
 
-//          System.setProperty("webdriver.gecko.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\geckodriver.exe");
-//          driver = new FirefoxDriver();
-//
-
-
+        else if (browser == "explorer") {
             System.setProperty("webdriver.ie.driver", "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\drivers\\IEDriverServer.exe");
-            driver = new InternetExplorerDriver();
+            return new InternetExplorerDriver();
+        }
 
-            wait = new WebDriverWait(driver, 10);
-    }
-
-    @Test
-    public void login() {
-        driver.get("http://localhost/litecart/admin/");
-        driver.findElement(By.xpath("//input[@name=\"username\"]")).sendKeys("admin");
-        driver.findElement(By.xpath("//input[@name=\"password\"]")).sendKeys("admin");
-        driver.findElement(By.xpath("//button[@name=\"login\"]")).click();
-    }
-
-    @After
-    public void stop() {
-        driver.quit();
-        driver = null;
+        else {return null;}
     }
 
 }
-
