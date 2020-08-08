@@ -28,20 +28,20 @@ public class Task7 {
 
     @Test
     public void test1() {
-        driver.findElement(By.xpath(".//ul[@id='box-apps-menu']/li[1]/a")).click();
+        driver.findElement(By.xpath("//li[1]/a")).click();
         wait = new WebDriverWait(driver, 10);
-        driver.findElement(By.xpath(".//li[@id='doc-template']/a")).click();
-        WebElement element = wait.until(presenceOfElementLocated(By.xpath("//h1")));
-        Assert.assertNotNull(driver.findElement(By.xpath("//h1")).getText());
+        driver.findElement(By.xpath("//li[@id='doc-template']/a")).click();
+        WebElement element = wait.until(presenceOfElementLocated(By.tagName("h1")));
+        Assert.assertNotNull(driver.findElement(By.tagName("h1")).getText());
     }
 
     @Test
     public void test2() {
-        driver.findElement(By.xpath("//ul[@id='box-apps-menu']/li[1]/a")).click();
+        driver.findElement(By.xpath("//li[1]/a")).click();
         wait = new WebDriverWait(driver, 10);
-        driver.findElement(By.xpath(".//li[@id='doc-logotype']/a")).click();
-        WebElement element = wait.until(presenceOfElementLocated(By.xpath("//h1")));
-        Assert.assertNotNull(driver.findElement(By.xpath("//h1")).getText());
+        driver.findElement(By.xpath("//li[@id='doc-logotype']/a")).click();
+        WebElement element = wait.until(presenceOfElementLocated(By.tagName("h1")));
+        Assert.assertNotNull(driver.findElement(By.tagName("h1")).getText());
     }
 
     @After
