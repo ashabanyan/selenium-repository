@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 
-public class Task7 {
+public class Task7_admin {
     private WebDriver driver;
     private WebDriverWait wait;
 
