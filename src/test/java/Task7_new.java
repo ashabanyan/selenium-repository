@@ -35,12 +35,7 @@ public class Task7_new {
                 driver.findElement(By.cssSelector("h1"));
                 System.out.println(driver.findElement(By.cssSelector("h1")).getText());
             }
-
-            driver.findElement(By.cssSelector("h1"));
-            System.out.println("* " + driver.findElement(By.cssSelector("h1")).getText());
-
         }
-
     }
 
     @After
