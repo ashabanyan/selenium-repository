@@ -14,9 +14,9 @@ public class Task7_stickers {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    private boolean isElementPresent(String xpath) {
+    private boolean isElementPresent(String css) {
         try {
-            driver.findElement(By.xpath(xpath));
+            driver.findElement(By.cssSelector(css));
         } catch (NoSuchElementException e) {
             return false;
         }
@@ -34,7 +34,13 @@ public class Task7_stickers {
     }
 
     @Test
-    public void mostPopular() {
-
+    public void test() {
+        int size = driver.findElements(By.xpath("//li[@class='product column shadow hover-light']"));
+        for (int i = 0; i<size; i++) {
+            driver.findElements(By.cssSelector("[class^=sticker"));
+        }
     }
+
+
 }
+
