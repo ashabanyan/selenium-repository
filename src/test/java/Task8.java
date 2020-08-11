@@ -19,9 +19,6 @@ public class Task8 {
         driver = BrowserProperties.getProperty("firefox");
         wait = new WebDriverWait(driver, 10);
         driver.get("http://localhost/litecart");
-        /*driver.findElement(By.xpath("//input[@name=\"username\"]")).sendKeys("admin");
-        driver.findElement(By.xpath("//input[@name=\"password\"]")).sendKeys("admin");
-        driver.findElement(By.xpath("//button[@name=\"login\"]")).click();*/
     }
 
     @Test
