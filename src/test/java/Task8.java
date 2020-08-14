@@ -23,7 +23,7 @@ public class Task8 {
     }
 
     @Test
-    public void test() {
+    public void test1() {
         int ducks= driver.findElements(By.xpath("//li[@class='product column shadow hover-light']")).size();
         for (int i = 0; i< ducks; i++) {
             int count = driver.findElements(By.cssSelector("li[class='product column shadow hover-light']")).get(i).findElements(By.cssSelector("div[class^=sticker]")).size();

@@ -62,6 +62,35 @@ public class Task9 {
         }
     }
 
+    @Test
+    public void test2() {
+        driver.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
+        driver.findElement(By.xpath("//input[@name=\"username\"]")).sendKeys("admin");
+        driver.findElement(By.xpath("//input[@name=\"password\"]")).sendKeys("admin");
+        driver.findElement(By.xpath("//button[@name=\"login\"]")).click();
+        int size = driver.findElements(By.cssSelector("tr[class=row]")).size();
+
+        for (int i = 0; i<size; i++) {
+            driver.findElements(By.cssSelector("tr[class=row]")).get(i).findElement(By.cssSelector("a")).click();
+            int zsize = driver.findElements(By.xpath("//table[@class='dataTable']//td[3]/select/option[@selected='selected']")).size();
+            System.out.println(zsize);
+
+            for (int j = 0; j<zsize-1 ; j++) {
+                String a1 = driver.findElements(By.xpath("//table[@class='dataTable']//td[3]/select/option[@selected='selected']")).get(j).getText();
+                String a2 = driver.findElements(By.xpath("//table[@class='dataTable']//td[3]/select/option[@selected='selected']")).get(j+1).getText();
+                boolean zresult;
+                int res = a1.compareTo(a2);
+                if (res<0) {
+                    zresult = true;
+                    System.out.println(a1 + " / " + a2 + " - Порядок правильный!");
+                } else {zresult = false;}
+
+                Assert.assertTrue(zresult);
+            }
+            driver.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
+        }
+    }
+
     @After
     public void finish() {
         driver.quit();
