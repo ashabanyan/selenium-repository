@@ -24,12 +24,13 @@ public class Task8 {
 
     @Test
     public void test1() {
-        int ducks= driver.findElements(By.xpath("//li[@class='product column shadow hover-light']")).size();
+        int ducks= driver.findElements(By.cssSelector("[class^=product]")).size();
         for (int i = 0; i< ducks; i++) {
-            int count = driver.findElements(By.cssSelector("li[class='product column shadow hover-light']")).get(i).findElements(By.cssSelector("div[class^=sticker]")).size();
+            int count = driver.findElements(By.cssSelector("[class^=product]")).get(i).findElements(By.cssSelector("div[class^=sticker]")).size();
             boolean result;
             if (count == 1) {
                 result = true;
+                System.out.println("У товара под номером №" + (i+1) + " - " + count + " стикер/ов!");
             } else {result=false;}
             Assert.assertTrue(result);
         }
