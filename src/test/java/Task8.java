@@ -1,3 +1,4 @@
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,8 +25,14 @@ public class Task8 {
     @Test
     public void test() {
         int ducks= driver.findElements(By.xpath("//li[@class='product column shadow hover-light']")).size();
-        int stickers = driver.findElements(By.cssSelector("[class^=sticker")).size();
-        Assert.assertEquals(ducks,stickers);
+        for (int i = 0; i< ducks; i++) {
+            int count = driver.findElements(By.cssSelector("li[class='product column shadow hover-light']")).get(i).findElements(By.cssSelector("div[class^=sticker]")).size();
+            boolean result;
+            if (count == 1) {
+                result = true;
+            } else {result=false;}
+            Assert.assertTrue(result);
+        }
     }
 
     @After
