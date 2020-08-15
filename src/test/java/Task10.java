@@ -26,14 +26,12 @@ public class Task10 {
             String outregprice = driver.findElements(By.xpath("//div[@id='box-campaigns']//li[@class='product column shadow hover-light']//div[@class='price-wrapper']")).get(i).findElement(By.cssSelector("[class=regular-price]")).getText();
             String outsaleprice = driver.findElements(By.xpath("//div[@id='box-campaigns']//li[@class='product column shadow hover-light']//div[@class='price-wrapper']")).get(i).findElement(By.cssSelector("[class=campaign-price]")).getText();
 
-            String regcolor = driver.findElement(By.cssSelector("[id=box-campaigns] [class=regular-price]")).getCssValue("color");
-            String through = driver.findElement(By.cssSelector("[id=box-campaigns] [class=regular-price]")).getCssValue("text-decoration-line");
+            String outregcolor = driver.findElement(By.cssSelector("[id=box-campaigns] [class=regular-price]")).getCssValue("color");
+            String outregthrough = driver.findElement(By.cssSelector("[id=box-campaigns] [class=regular-price]")).getCssValue("text-decoration-line");
 
-            String salecolor = driver.findElement(By.cssSelector("[id=box-campaigns] [class=campaign-price]")).getCssValue("color");
-            System.out.println(salecolor);
+            String outsalecolor = driver.findElement(By.cssSelector("[id=box-campaigns] [class=campaign-price]")).getCssValue("color");
+            String outsalestrong = driver.findElements(By.xpath("//div[@id='box-campaigns']//li[@class='product column shadow hover-light']//strong")).get(i).getAttribute("class");
 
-            String salebold = driver.findElement(By.cssSelector("[id=box-campaigns] [class=campaign-price]")).getCssValue("font-weight");
-            System.out.println(salebold);
 
 
 
@@ -47,6 +45,14 @@ public class Task10 {
             String inname = driver.findElement(By.cssSelector("h1")).getText();
             String inregprice = driver.findElement(By.cssSelector("[class=content] [class=price-wrapper] [class=regular-price]")).getText();
             String insaleprice = driver.findElement(By.cssSelector("[class=content] [class=price-wrapper] [class=campaign-price]")).getText();
+
+            String inregcolor = driver.findElement(By.cssSelector("[class=content] [class=regular-price]")).getCssValue("color");
+            String inregthrough = driver.findElement(By.cssSelector("[class=content] [class=regular-price]")).getCssValue("text-decoration-line");
+
+            String insalecolor = driver.findElement(By.cssSelector("[class=content] [class=campaign-price]")).getCssValue("color");
+            String insalestrong = driver.findElements(By.xpath("//div[@class='content']//div[@class='information']//div[@class='price-wrapper']/strong")).get(i).getAttribute("class");
+
+            System.out.println("----------------------------------------");
             if (outname.equals(inname)) {
                 System.out.println(outname + " & " + inname + " - названия совпадают!");
             }
@@ -59,11 +65,22 @@ public class Task10 {
                 System.out.println("Акционные цены совпадают: " + outsaleprice + " & " + insaleprice);
             }
 
-            if (regcolor.equals("rgb(119, 119, 119)") & through.equals("line-through")) {
-                System.out.println("Регулярная цена отображена в сером цвете и перечеркнута");
+            if (outregcolor.equals("rgb(119, 119, 119)") & outregthrough.equals("line-through")) {
+                System.out.println("Регулярная цена на главной странице отображена в сером цвете и перечеркнута");
             }
 
-            //if (salecolor.equals("rgb(204, 0, 0)") & )
+            if (outsalecolor.equals("rgb(204, 0, 0)") & outsalestrong.equals("campaign-price")) {
+                System.out.println("Акционная цена на главной странице отображена в красном цвете и в жирном шрифте!");
+            }
+
+            if (inregcolor.equals("rgb(102, 102, 102)") & inregthrough.equals("line-through")) {
+                System.out.println("Регулярная цена в карточке товара отображена в сером цвете и перечеркнута");
+            }
+
+            if (insalecolor.equals("rgb(204, 0, 0)") & insalestrong.equals("campaign-price")) {
+                System.out.println("Акционная цена в карточке товара отображена в красном цвете и в жирном шрифте!");
+            }
+
 
         }
 
