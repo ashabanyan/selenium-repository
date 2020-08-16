@@ -28,7 +28,7 @@ public class Task11 {
         driver.findElement(By.cssSelector("[name=city]")).sendKeys("Los-Angeles");
 
 
-        Select country = new Select(driver.findElement(By.xpath("//select[@name='country_code']")));
+        Select country = new Select(driver.findElement(By.name("country_code")));
         country.selectByVisibleText("United States");
 
 //        String email = "test2@gmail.com";
