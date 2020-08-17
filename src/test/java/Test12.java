@@ -8,7 +8,9 @@ public class Test12 {
     private WebDriver driver;
     private WebDriverWait wait;
     private String path = getClass().getClassLoader().getResource(".").getPath();
-    private String Imagepath = "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\target\\test-classes\\testduck.jpeg";
+    private String Imagepath = "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\resources\\testduck.jpeg";
+
+
 
     @Before
     public void start() {
@@ -36,8 +38,9 @@ public class Test12 {
         driver.findElement(By.xpath("//input[@name='new_images[]']")).sendKeys(Imagepath);
 
 
+        driver.findElement(By.cssSelector("input[name='date_valid_from']")).sendKeys("01/01/2020");
 
-        System.out.println(path);
+
     }
 
 

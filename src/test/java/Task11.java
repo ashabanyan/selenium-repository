@@ -31,7 +31,7 @@ public class Task11 {
         driver.findElement(By.cssSelector("[name=postcode]")).sendKeys("12345");
         driver.findElement(By.cssSelector("[name=city]")).sendKeys("Los-Angeles");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        
+
         Select country = new Select(driver.findElement(By.cssSelector("select[name='country_code']")));
         country.selectByVisibleText("United States");
         Select zone = new Select(driver.findElement(By.cssSelector("select[name='zone_code']")));
