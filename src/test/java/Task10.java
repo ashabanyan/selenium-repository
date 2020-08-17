@@ -37,7 +37,6 @@ public class Task10 {
 
             //-----------------------------------Переход на страницу карточки------------------------------
             driver.findElements(By.cssSelector("[id=box-campaigns] [class=link]")).get(i).click();
-            System.out.println("----------------------------------------");
 
             //-----------------------------------Запись переменных на в карточке товара--------------------
             String inname = driver.findElement(By.cssSelector("h1")).getText();
