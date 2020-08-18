@@ -46,15 +46,10 @@ public class Task11 {
         driver.findElement(By.cssSelector("[name=password]")).sendKeys(password);
         driver.findElement(By.cssSelector("[name=confirmed_password]")).sendKeys(password);
         driver.findElement(By.cssSelector("[name=create_account]")).click();
-
         driver.findElement(By.xpath("//ul[@class='list-vertical']//li[5]/a")).click();
-
         driver.findElement(By.cssSelector("[name=email]")).sendKeys(email);
         driver.findElement(By.cssSelector("[name=password]")).sendKeys(password);
         driver.findElement(By.cssSelector("[name=login]")).click();
-
         driver.findElement(By.xpath("//ul[@class='list-vertical']//li[5]/a")).click();
-
     }
-
 }
