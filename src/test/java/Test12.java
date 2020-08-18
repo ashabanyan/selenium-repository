@@ -1,8 +1,13 @@
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class Test12 {
     private WebDriver driver;
@@ -11,10 +16,15 @@ public class Test12 {
     private String Imagepath = "D:\\Education\\Testing\\Selenium WebDriver\\selenium-repository\\resources\\testduck.jpeg";
 
 
+//    public void setDatepicker(String cssSelector, String date) {
+//        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(cssSelector))));
+//        JavascriptExecutor.class.cast(driver).executeScript(
+//                String.format("$('%s').datepicker('setDate', '%s')", cssSelector, date));
+//    }
 
     @Before
     public void start() {
-        driver = BrowserProperties.getProperty("firefox");
+        driver = BrowserProperties.getProperty("chrome");
         wait = new WebDriverWait(driver, 10);
         driver.get("http://localhost/litecart/admin/");
         driver.findElement(By.xpath("//input[@name=\"username\"]")).sendKeys("admin");
@@ -24,7 +34,8 @@ public class Test12 {
 
     @Test
     public void test() {
-        driver.findElement(By.xpath(".//span[contains(text(),\"Catalog\")]/..")).click();
+        driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog");
+        //driver.findElement(By.xpath("//li[@id='app-'][2]/a")).click();
         driver.findElement(By.xpath("//div[@style='float: right;']/a[2]")).click();
 
         driver.findElement(By.xpath("//div[@id='tab-general']//tr[1]//input[@value='1']")).click();
@@ -38,7 +49,19 @@ public class Test12 {
         driver.findElement(By.xpath("//input[@name='new_images[]']")).sendKeys(Imagepath);
 
 
-        driver.findElement(By.cssSelector("input[name='date_valid_from']")).sendKeys("01/01/2020");
+        driver.findElement(By.name("date_valid_from")).sendKeys("01012020");
+        driver.findElement(By.name("date_valid_to")).sendKeys("31122020");
+
+
+
+        Select country = new Select(driver.findElement(By.cssSelector("select[name='country_code']")));
+        country.selectByVisibleText("United States");
+
+
+
+
+        driver.findElement(By.cssSelector("button[name=save]")).click();
+
 
 
     }
