@@ -27,7 +27,7 @@ public class Task10 {
         System.out.println(color[0].substring(4));
         System.out.println("-----------------------------------");
         System.out.println("-----------------------------------");
-        
+
         int campaigns_size = driver.findElements(By.cssSelector("[id=box-campaigns]")).size();
         for (int i =0; i<campaigns_size; i++) {
             //-----------------------------------Запись переменных на главной странице---------------------

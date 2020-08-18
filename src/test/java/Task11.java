@@ -7,11 +7,15 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Task11 {
     private WebDriver driver;
     private WebDriverWait wait;
+    Random random = new Random();
+    String email = "test_selenium" + random.nextInt() + "@gmail.com";
+    String password = "123123123";
 
     @Before
     public void start() {
@@ -37,10 +41,8 @@ public class Task11 {
         Select zone = new Select(driver.findElement(By.cssSelector("select[name='zone_code']")));
         zone.selectByVisibleText("Colorado");
 
-        String email = "test4@gmail.com";
         driver.findElement(By.cssSelector("[name=email]")).sendKeys(email);
         driver.findElement(By.cssSelector("[name=phone]")).sendKeys("89033583958");
-        String password = "123123123";
         driver.findElement(By.cssSelector("[name=password]")).sendKeys(password);
         driver.findElement(By.cssSelector("[name=confirmed_password]")).sendKeys(password);
         driver.findElement(By.cssSelector("[name=create_account]")).click();
