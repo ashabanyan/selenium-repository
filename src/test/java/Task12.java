@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class Test12 {
+public class Task12 {
     private WebDriver driver;
     private WebDriverWait wait;
     Random random = new Random();
