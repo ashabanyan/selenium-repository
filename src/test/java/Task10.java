@@ -37,8 +37,15 @@ public class Task10 {
             String outsalecolor = driver.findElement(By.cssSelector("[id=box-campaigns] [class=campaign-price]")).getCssValue("color");
             String[] coloroutsale = outsalecolor.split(",");
             String outsalestrong = driver.findElements(By.xpath("//div[@id='box-campaigns']//li[@class='product column shadow hover-light']//strong")).get(i).getAttribute("class");
+
             String outregsize = driver.findElement(By.cssSelector("[id=box-campaigns] [class=regular-price]")).getCssValue("font-size");
+            String[] sizeoutreg = outregsize.split("px");
+            double oregsize = Double.parseDouble(sizeoutreg[0]);
+
             String outsalesize = driver.findElement(By.cssSelector("[id=box-campaigns] [class=campaign-price]")).getCssValue("font-size");
+            String[] sizeoutsale = outsalesize.split("px");
+            double osalesize = Double.parseDouble(sizeoutsale[0]);
+
 
             //-----------------------------------Переход на страницу карточки------------------------------
             driver.findElements(By.cssSelector("[id=box-campaigns] [class=link]")).get(i).click();
@@ -53,8 +60,15 @@ public class Task10 {
             String insalecolor = driver.findElement(By.cssSelector("[class=content] [class=campaign-price]")).getCssValue("color");
             String[] colorinsale = insalecolor.split(",");
             String insalestrong = driver.findElements(By.xpath("//div[@class='content']//div[@class='information']//div[@class='price-wrapper']/strong")).get(i).getAttribute("class");
+
             String inregsize = driver.findElement(By.cssSelector("[class=content] [class=regular-price]")).getCssValue("font-size");
+            String[] sizeinreg = inregsize.split("px");
+            double iregsize = Double.parseDouble(sizeinreg[0]);
+
             String insalesize = driver.findElement(By.cssSelector("[class=content] [class=campaign-price]")).getCssValue("font-size");
+            String[] sizeinsale = insalesize.split("px");
+            double isalesize = Double.parseDouble(sizeinsale[0]);
+
 
             //----------------------------------------Проверки---------------------------------------------
             if (outname.equals(inname)) {
@@ -85,11 +99,11 @@ public class Task10 {
                 System.out.println("Акционная цена в карточке товара отображена в красном цвете и в жирном шрифте!");
             }
             System.out.println("--------------------------------------------");
-            if (outsalesize.compareTo(outregsize) > 0) {
+            if (osalesize>oregsize) {
                 System.out.println("Акционная цена крупнее регулярной на главной странице!");
             }
             System.out.println("--------------------------------------------");
-            if (insalesize.compareTo(inregsize) > 0) {
+            if (isalesize > iregsize) {
                 System.out.println("Акционная цена крупнее регулярной в карточке товара!");
             }
         }
