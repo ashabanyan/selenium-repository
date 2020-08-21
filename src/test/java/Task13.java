@@ -1,14 +1,13 @@
-import org.junit.Assert;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
-import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class Task13 {
     private WebDriver driver;
@@ -20,21 +19,19 @@ public class Task13 {
             Select country = new Select(driver.findElement(By.cssSelector("select[name='options[Size]']")));
             country.selectByVisibleText("Small");
             driver.findElement(By.cssSelector("button[name='add_cart_product']")).click();
-        }
-        else {
+        } else {
             driver.findElement(By.cssSelector("button[name='add_cart_product']")).click();
         }
     }
 
     @Before
     public void start() {
-        driver = BrowserProperties.getProperty("firefox");
+        driver = BrowserProperties.getProperty("chrome");
         wait = new WebDriverWait(driver, 10);
     }
 
     @Test
     public void test() {
-
         driver.get("https://litecart.stqa.ru/en/");
         driver.findElements(By.cssSelector("li[class='product column shadow hover-light']")).get(0).click();
         isSelectSize();
@@ -53,20 +50,30 @@ public class Task13 {
         WebElement quantity3 = driver.findElement(By.cssSelector("span[class='quantity']"));
         wait.until(textToBePresentInElement(quantity3, "3"));
 
-
-
         driver.findElement(By.xpath("//a[contains(text(),'Checkout')]")).click();
 
-        driver.findElements(By.xpath("//div[@class='viewport']//button[contains(text(),'Remove')]")).get(1).click();
-
-//        wait.until((driver.findElements(By.xpath("//td[@class='item']")).size() == 2));
-////        int count = driver.findElements(By.xpath("//td[@class='item']")).size();
-////        Assert.assertEquals(count, Integer.parseInt("2"));
-
-
-
+        //Удаление по одному элементу из корзины
+        wait.until(visibilityOfElementLocated(By.name("remove_cart_item")));
+        int countRow = 1;
+        while (countRow > 0) {
+            countRow = driver.findElements(By.xpath("//table[@class='dataTable rounded-corners']/tbody/tr/td[@class='item']")).size();
+            WebElement del = wait.until(elementToBeClickable(By.name("remove_cart_item")));
+            try {
+                del.click();
+            } catch (TimeoutException ignore) {
+            }
+            System.out.println(countRow);
+            try {
+                wait.until(numberOfElementsToBeLessThan(By.xpath("//table[@class='dataTable rounded-corners']/tbody/tr/td[@class='item']"), countRow));
+                countRow = driver.findElements(By.xpath("//table[@class='dataTable rounded-corners']/tbody/tr/td[@class='item']")).size();
+                System.out.println(countRow);
+            } catch (TimeoutException ignore) {
+            }
+        }
     }
 
-
-
+    @After
+    public void finish() {
+        driver.quit();
+    }
 }
