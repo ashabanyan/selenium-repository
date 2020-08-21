@@ -32,27 +32,17 @@ public class Task13 {
 
     @Test
     public void test() {
-        driver.get("https://litecart.stqa.ru/en/");
-        driver.findElements(By.cssSelector("li[class='product column shadow hover-light']")).get(0).click();
-        isSelectSize();
-        WebElement quantity = driver.findElement(By.cssSelector("span[class='quantity']"));
-        wait.until(textToBePresentInElement(quantity, "1"));
-
-        driver.get("https://litecart.stqa.ru/en/");
-        driver.findElements(By.cssSelector("li[class='product column shadow hover-light']")).get(0).click();
-        isSelectSize();
-        WebElement quantity2 = driver.findElement(By.cssSelector("span[class='quantity']"));
-        wait.until(textToBePresentInElement(quantity2, "2"));
-
-        driver.get("https://litecart.stqa.ru/en/");
-        driver.findElements(By.cssSelector("li[class='product column shadow hover-light']")).get(0).click();
-        isSelectSize();
-        WebElement quantity3 = driver.findElement(By.cssSelector("span[class='quantity']"));
-        wait.until(textToBePresentInElement(quantity3, "3"));
+        for (int i = 0; i<3; i++) {
+            driver.get("https://litecart.stqa.ru/en/");
+            driver.findElements(By.cssSelector("li[class='product column shadow hover-light']")).get(0).click();
+            isSelectSize();
+            WebElement quantity = driver.findElement(By.cssSelector("span[class='quantity']"));
+            String expquan = Integer.toString(i+1);
+            wait.until(textToBePresentInElement(quantity, expquan));
+        }
 
         driver.findElement(By.xpath("//a[contains(text(),'Checkout')]")).click();
-
-
+        
         wait.until(visibilityOfElementLocated(By.name("remove_cart_item")));
         int countRow = 1;
         while (countRow > 0) {
