@@ -42,7 +42,7 @@ public class Task13 {
         }
 
         driver.findElement(By.xpath("//a[contains(text(),'Checkout')]")).click();
-        
+
         wait.until(visibilityOfElementLocated(By.name("remove_cart_item")));
         int countRow = 1;
         while (countRow > 0) {
