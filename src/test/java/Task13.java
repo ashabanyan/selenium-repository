@@ -1,3 +1,4 @@
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +39,7 @@ public class Task13 {
             isSelectSize();
             WebElement quantity = driver.findElement(By.cssSelector("span[class='quantity']"));
             String expquan = Integer.toString(i+1);
+            System.out.println("quantity = " + quantity.getText());
             wait.until(textToBePresentInElement(quantity, expquan));
         }
 
@@ -67,3 +69,4 @@ public class Task13 {
         driver.quit();
     }
 }
+
